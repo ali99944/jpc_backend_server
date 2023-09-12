@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Categories</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        table {
+            text-align: center;
+        }
+
+        .controls {
+            display: flex;
+        }
+
+        .controls > * {
+            flex-grow: 1;
+        }
+
+        .controls > :first-child {
+            margin-right: 10px !important;
+        }
+    </style>
+</head>
+<body>
+<%- include('../components/navbar') %>
+<div class="mt-4"></div>
+<div class="container">
+    <h2>Categories</h2>
+    <a href="/categories/create" class="btn btn-primary mb-3">Create New Category</a>
+    <div class="form-group">
+        <input type="text" class="form-control" id="searchInput" placeholder="Search by Name">
+    </div>
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <% categories.forEach(category => { %>
+            <tr>
+                <td><%= category.name %></td>
+                <td class="controls">
+                    <a href="/categories/<%= category._id %>/edit" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="#" onclick="showDeleteConfirmation('<%= category._id %>')" class="btn btn-danger btn-sm ms-2">Delete</a>
+                </td>
+            </tr>
+
+            <div class="modal fade" id="deleteConfirmationModal_<%= category._id %>" tabindex="-1" aria-labelledby="deleteConfirmationModalLabel_<%= category._id %>" aria-hidden="true">
+                <!-- Modal content for delete confirmation -->
+            </div>
+
+        <% }); %>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    // JavaScript functions as before
+</script>
+</body>
+</html>
