@@ -53,9 +53,9 @@ router.put('/categories/:id', async (req,res) =>{
         if(updated) console.log('yes updated')
         else console.log('not updated')
 
-        return res.status(200).send("Updated")
+        return res.status(200).json("Updated")
     }catch (error){
-        return res.status(500).send(error.message)
+        return res.status(500).json(error.message)
     }
 })
 
